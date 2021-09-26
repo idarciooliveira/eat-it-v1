@@ -1,0 +1,37 @@
+﻿@model List<Funcionario>
+
+@{
+    ViewData["Title"] = "About";
+
+}
+<h2>@ViewData["Title"].</h2>
+<h3>@ViewData["Message"]</h3>
+<h4>@ViewData["iof"]</h4>
+
+<p>
+    <table>
+        <thead>
+            <tr>
+                <td>Primeiro nome</td>
+                <td>Sobrenome</td>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var funcionario in @Model)
+                {
+                   <tr>
+                       <td>@funcionario.Nome</td>
+                       <td>@funcionario.Sobrenome</td>
+                   </tr> 
+                }
+        </tbody>
+    </table>
+    <ul>
+        @foreach (var funcionario in @Model)
+        {
+            <li>@funcionario.Nome @funcionario.Sobrenome</li>
+
+       }
+    </ul>
+    
+</p>

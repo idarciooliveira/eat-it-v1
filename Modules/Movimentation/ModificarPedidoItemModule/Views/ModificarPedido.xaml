@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="ModificarPedidoItemModule.Views.ModificarPedido"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Width="408.14" Height="316.114" Background="White">
+
+    <GroupBox Header="Modificar Pedido" BorderBrush="Yellow">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="209*"/>
+                <ColumnDefinition Width="226*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Mesa" Margin="5" TextAlignment="Center"
+                        FontSize="20" Foreground="Black" FontWeight="Bold"/>
+            <TextBlock  Margin="5" FontSize="16"  Grid.Row="0" 
+                        Grid.Column="1" TextAlignment="Center" Foreground="Black"
+                        Text="{Binding Pedido.NumeroDaMesa}"/>
+
+            <TextBlock Text="Data do Pedido" Margin="5" TextAlignment="Center"
+                        FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="1" Grid.Column="0"/>
+            <TextBlock  Margin="5" FontSize="16"  Grid.Row="1" Grid.Column="1" TextAlignment="Center"
+                        Text="{Binding Pedido.DataDoPedido}" Foreground="Black"/>
+
+            <TextBlock Text="Valor do Pedido" Margin="5" TextAlignment="Center"
+                        FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="2" Grid.Column="0"/>
+            <TextBlock  Margin="5" FontSize="16"  Grid.Row="2" Foreground="Black"
+                        Grid.Column="1" TextAlignment="Center"
+                        Text="{Binding Pedido.SubTotal}"  />
+
+            <TextBlock Text="Estado do Pedido" Margin="5" TextAlignment="Center"
+                        FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="3" Grid.Column="0"/>
+            <ComboBox  Margin="5" FontSize="16"  Grid.Row="3" HorizontalContentAlignment="Center"
+                       SelectedItem="{Binding Estado}" DisplayMemberPath="Nome" 
+                       Grid.Column="1" ItemsSource="{Binding Estados}" Name="ComboBox">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectEstadoCommand}"
+                             CommandParameter="{Binding ElementName=ComboBox,Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+            <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="4"
+                        Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="390">
+                <Button Content="Alterar" Width="120" Height="40" Margin="5"
+                        Command="{Binding AlterarCommand}"/>
+                <Button Content="Imprimir" Width="120" Height="40" Margin="5"
+                        Command="{Binding ImprimirCommand}"/>
+                <Button Content="Voltar" Width="120" Height="40" Margin="5"
+                        Command="{Binding VoltarCommand}"/>
+            </StackPanel>
+        </Grid>
+    </GroupBox>
+</UserControl>

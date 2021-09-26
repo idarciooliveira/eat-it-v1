@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="ModificarPedidoItemModule.Views.ModificarPedidoOnline"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Width="405.884" Height="331.903" Background="White">
+
+    <GroupBox Header="Modicar Pedido Online" BorderBrush="Yellow">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="209*"/>
+                <ColumnDefinition Width="226*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="30*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Cliente" Margin="5" TextAlignment="Center"
+                       FontSize="20" Foreground="Black" FontWeight="Bold" /> 
+            <TextBlock  Margin="5" FontSize="16"  Grid.Row="0" 
+                        Grid.Column="1" TextAlignment="Center"
+                        Text="{Binding Cliente.NomeCompleto}"/>
+
+            <TextBlock Text="Data do Pedido" Margin="5" TextAlignment="Center"
+                       FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="1" Grid.Column="0"/>
+            <TextBlock  Margin="5" FontSize="16"  Grid.Row="1" Grid.Column="1" TextAlignment="Center"
+                        Text="{Binding Pedido.DataDoPedido}"/>
+
+            <TextBlock Text="Valor do Pedido" Margin="5" TextAlignment="Center"
+                       FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="2" Grid.Column="0"/>
+            <TextBlock  Margin="5" FontSize="16"  Grid.Row="2" 
+                        Grid.Column="1" TextAlignment="Center"
+                        Text="{Binding Pedido.SubTotal}"  />
+
+            <TextBlock Text="Estado do Pedido" Margin="5" TextAlignment="Center"
+                       FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="3" Grid.Column="0"/>
+            <ComboBox  Margin="5" FontSize="16"  Grid.Row="3" HorizontalContentAlignment="Center"
+                       SelectedItem="{Binding Estado}" DisplayMemberPath="Nome" 
+                       Grid.Column="1" ItemsSource="{Binding Estados}" Name="ComboBox">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectEstado}"
+                                 CommandParameter="{Binding ElementName=ComboBox,Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+            <TextBlock Text="Local da Entrega" Margin="5" TextAlignment="Center"
+                       FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="4" Grid.Column="0"/>
+            <ComboBox  Margin="5" FontSize="16"  Grid.Row="4" HorizontalContentAlignment="Center"
+                       SelectedItem="{Binding Estado}" DisplayMemberPath="Nome" 
+                       Grid.Column="1" ItemsSource="{Binding Estados}"/>
+
+            <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="5"
+                        Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Width="390">
+                <Button Content="Alterar" Width="120" Height="40" Margin="5"
+                        Command="{Binding ModifyPedidoCommand}"/>
+                <Button Content="Imprimir" Width="120" Height="40" Margin="5"
+                        Command="{Binding PrintPedidoCommand}"/>
+                <Button Content="Voltar" Width="120" Height="40" Margin="5"
+                        Command="{Binding NavigateCommand}"/>
+            </StackPanel>
+
+        </Grid>
+    </GroupBox>
+
+</UserControl>

@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="PedidoSolicitados.Views.PedidosSolicitados"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Height="517.216" Width="1054.381">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="650"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid Margin="20" Background="White" >
+                <GroupBox Header="Pedidos Solicitados">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40*"/>
+                            <RowDefinition Height="350*"/>
+                            <RowDefinition Height="35*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBox Width="300" Text="{Binding TextoPesquisa,Mode=TwoWay}" 
+                                     Margin="5" TextAlignment="Center"
+                                     controls:TextBoxHelper.Watermark="Pesquisa pelo codigo do Pedido"
+                                     Name="TextBoxPesquisa" TextChanged="OnSeachByCode"/>
+                        </StackPanel>
+
+                        <DataGrid Margin="5" AutoGenerateColumns="False" Name="DataGrid"
+                                  ItemsSource="{Binding Pedidos}" IsReadOnly="True" Grid.Row="1">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Cod" Width="*" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Cliente" Width="Auto" Binding="{Binding Cliente.NomeCompleto}"/>
+                                <DataGridTextColumn Header="Data do Pedido" Width="Auto" Binding="{Binding DataDoPedido}"/>
+                                <DataGridTextColumn Header="Local de Entrega" Width="Auto" Binding="{Binding Morada.MoradaCompleta}"/>
+                                <DataGridTextColumn Header="Total" Width="*" Binding="{Binding SubTotal}"/>
+                            </DataGrid.Columns>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding SelectCommand}" 
+                                              CommandParameter="{Binding ElementName=DataGrid,Path=SelectedItem}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </DataGrid>
+
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBlock Text="Pedidos Solicitados" FontWeight="Bold"
+                                       TextAlignment="Center" Margin="5" Foreground="Black"/>
+                            <TextBlock Text="{Binding PedidosSolicitados}" FontWeight="Bold" 
+                                       Foreground="Black" TextAlignment="Center" Margin="5"/>
+                            <Button Content="Actualizar Pedidos" Width="150" Margin="5"
+                                    Command="{Binding ReloadCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120*"/>
+                <RowDefinition Height="130*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Background="White" Width="380" Margin="10">
+                <GroupBox Header="Detalhes do Pedido" BorderBrush="Yellow">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200*"/>
+                            <ColumnDefinition Width="226*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="0*"/>
+                            <RowDefinition Height="40*"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Código" Margin="5" TextAlignment="Center"
+                                   FontSize="20" Foreground="Black" FontWeight="Bold"/>
+                        <TextBlock  Margin="5" FontSize="16"  Grid.Row="0" 
+                                    Grid.Column="1" TextAlignment="Center"
+                                    Text="{Binding Pedido.Id}" Foreground="Black"/>
+
+                        <TextBlock Text="Cliente" Margin="5" TextAlignment="Center"
+                                   FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="1" Grid.Column="0"/>
+                        
+                        <TextBlock  Margin="5" FontSize="16"  Grid.Row="1" Grid.Column="1" TextAlignment="Center"
+                                    Text="{Binding Cliente.Nome}" Foreground="Black"/>
+
+                        <TextBlock Text="Valor do Pedido" Margin="5" TextAlignment="Center"
+                                   FontSize="20" Foreground="Black" FontWeight="Bold"  Grid.Row="2" Grid.Column="0"/>
+                        <TextBlock  Margin="5" FontSize="16"  Grid.Row="2" Foreground="Black"
+                                    Grid.Column="1" TextAlignment="Center"
+                                    Text="{Binding Pedido.SubTotal}"  />
+
+                        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="4"
+                                    Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" >
+                            <Button Content="Aceitar Pedido" Width="120" Height="35" Margin="5"
+                                    Command="{Binding AceptCommand}"/>
+                            <Button Content="Recusar Pedido" Width="120" Height="35" Margin="5"
+                                    Command="{Binding DenyCommand}"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
+
+            <Grid Grid.Row="1" Height="250" Width="340" Background="White">
+                <GroupBox Header="Produtos do Pedido">
+                    <DataGrid AutoGenerateColumns="False" Name="DataGridItem" 
+                              ItemsSource="{Binding Items}" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Produto" Width="Auto" Binding="{Binding Produto.Descricao}"/>
+                            <DataGridTextColumn Header="Qt" Width="*" Binding="{Binding Quantidade }"/>
+                            <DataGridTextColumn Header="Valor" Width="*" Binding="{Binding Valor}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="MenuModule.Views.AboutPlataform"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Background="#FFA20D13" BorderBrush="White" Height="402.048" Width="560.726">
+    
+    <GroupBox Header="{Binding Titulo}" BorderBrush="White" Background="#FFA20D13" >
+        <Grid Background="#FFA20D13">
+            <Grid.RowDefinitions>
+                <RowDefinition  MinHeight="193"/>
+                <RowDefinition Height="Auto" MinHeight="215"/>
+            </Grid.RowDefinitions>
+
+            <Image Source="../Resources/EatIt preview-02.jpg" Margin="10"/>
+
+            <TextBlock Grid.Row="1" TextWrapping="Wrap"
+                       Margin="10" HorizontalAlignment="Center"
+                       VerticalAlignment="Top" Foreground="White"
+                       TextAlignment="Justify" Text="{Binding AboutPlataform}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="MenuModule.Views.MenuOnline"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Menu FontWeight="Bold" FontSize="18" Foreground="White">
+        <MenuItem Header="Movimentação"  >
+            <MenuItem Header="Pedidos Solicitados" Command="{Binding NavigateCommand}"
+                      CommandParameter="PedidosSolicitados" />
+            <Separator/>
+            <MenuItem Header="Consultar" >
+                <MenuItem Header="Pedidos" Command="{Binding NavigateCommand}"
+                          CommandParameter="ConsultarPedidosOnline" />
+                <MenuItem Header="Clientes" Command="{Binding NavigateCommand}"
+                          CommandParameter="ClientesRegistrados" />
+            </MenuItem>
+        </MenuItem>
+        <MenuItem Header="Sobre" >
+            <MenuItem Header="Sobre Eat - It" Command="{Binding NavigateCommand}"
+                      CommandParameter="AboutPlataform"/>
+            <MenuItem Header="Sobre os Desenvolvedores" Command="{Binding NavigateCommand}"
+                      CommandParameter="AboutDevelopers"/>
+        </MenuItem>
+        <MenuItem Header="Sair" Command="{Binding CloseCommand}"/>
+    </Menu>
+
+</UserControl>

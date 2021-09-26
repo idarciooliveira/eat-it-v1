@@ -1,0 +1,43 @@
+﻿<ctrol:MetroWindow x:Class="EAT.UI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:ctrol="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:models="clr-namespace:EAT.Infrastruture.WPF.Regions;assembly=EAT.Infrastruture.WPF"
+        prism:ViewModelLocator.AutoWireViewModel="True" 
+                    
+        WindowState="Maximized" Title="{Binding Title}" >
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+
+        <ContentControl Grid.Row="0" 
+                        prism:RegionManager.RegionName="{x:Static models:MyRegions.MenuRegion}"/>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <ContentControl Grid.Column="0" 
+                            prism:RegionManager.RegionName="{x:Static models:MyRegions.LeftRegion}"/>
+
+
+            <ContentControl Grid.Column="0" 
+                            Grid.ColumnSpan="2" prism:RegionManager.RegionName="{x:Static models:MyRegions.MainRegion}"/>
+            <ContentControl Grid.Column="1"
+                            prism:RegionManager.RegionName="{x:Static models:MyRegions.RightRegion}"/>
+            
+        </Grid>
+        
+        <ContentControl Grid.Row="2"
+                        prism:RegionManager.RegionName="{x:Static models:MyRegions.StatusRegion}"/>
+
+    </Grid>
+</ctrol:MetroWindow>

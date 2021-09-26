@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="StatusModule.Views.Statusbar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <RadioButton Width="50" Height="50" VerticalAlignment="Center"
+                             Background="Green"  IsEnabled="False"/>
+                
+                <TextBlock Text="Online" FontWeight="Bold"
+                           FontSize="16" VerticalAlignment="Center"
+                           TextAlignment="Left" Foreground="White" Margin="5"/>
+                <TextBlock Text="Caixa" FontWeight="Bold"
+                           FontSize="16" VerticalAlignment="Center"
+                           TextAlignment="Center" Foreground="White" Margin="5"/>
+                <TextBlock Text="{Binding Funcionario.NomeCompleto}" VerticalAlignment="Center" FontSize="16"
+                           TextAlignment="Center" Foreground="White" Margin="5"/>
+                
+                <TextBlock Text="Privilegio" TextAlignment="Center" FontWeight="Bold" FontSize="16"
+                           Foreground="White" Margin="5" VerticalAlignment="Center"/>
+
+                <TextBlock Text="{Binding Previlegio}"  FontSize="16"
+                           TextAlignment="Center" VerticalAlignment="Center"
+                           Foreground="White" Margin="5"/>
+            </StackPanel>
+
+</UserControl>

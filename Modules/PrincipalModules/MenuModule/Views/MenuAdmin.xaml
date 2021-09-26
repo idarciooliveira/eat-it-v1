@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="MenuModule.Views.MenuAdmin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Menu FontWeight="Bold" FontSize="18" Foreground="White">
+        <MenuItem Header="Cadastros" >
+            <MenuItem Header="Categorias" Command="{Binding NavigateCommand}"
+                      CommandParameter="Categorias"/>
+            <MenuItem Header="Produtos" Command="{Binding NavigateCommand}"
+                      CommandParameter="Produtos"/>
+            <MenuItem Header="Funcionarios" Command="{Binding NavigateCommand}"
+                      CommandParameter="Funcionarios" />
+            <Separator/>
+            <MenuItem Header="Clientes" Command="{Binding NavigateCommand}"
+                      CommandParameter="Clientes" />
+            <Separator/>
+            <MenuItem Header="Sair" Command="{Binding CloseCommand}" />
+        </MenuItem>
+        <MenuItem Header="Painel de Control">
+            <MenuItem Header="Consultas">
+                <MenuItem Header="Clientes" Command="{Binding NavigateCommand}"
+                          CommandParameter="ClientesRegistrados"/>
+                <MenuItem Header="Pedidos" Command="{Binding NavigateCommand}"
+                          CommandParameter="ConsultarPedidosAdmin" />
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Estátisticas">
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Caixa"/>
+        </MenuItem>
+        <MenuItem Header="Relatórios" >
+            <MenuItem Header="Relatórios de Vendas">
+                <MenuItem Header="Diário"/>
+                <MenuItem Header="Mensal"/>
+                <MenuItem Header="Anual"/>
+            </MenuItem>
+            <MenuItem Header="Relatórios de Produtos"/>
+            <Separator/>
+            <MenuItem Header="Relatório de Pedidos"/>
+        </MenuItem>
+        <MenuItem Header="Sobre" >
+            <MenuItem Header="Sobre Eat - It" Command="{Binding NavigateCommand}"
+                      CommandParameter="AboutPlataform"/>
+            <MenuItem Header="Sobre os Desenvolvedores" Command="{Binding NavigateCommand}"
+                      CommandParameter="AboutDevelopers"/>
+        </MenuItem>
+        <MenuItem Header="Sair" Command="{Binding CloseCommand}"/>
+    </Menu>
+</UserControl>
